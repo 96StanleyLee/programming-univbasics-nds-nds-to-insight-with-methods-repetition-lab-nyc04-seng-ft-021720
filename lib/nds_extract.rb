@@ -1,16 +1,22 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require_relative './directors_database'
 
+
 def directors_totals(source)
-  result = {}
-  director_index = 0
-  while director_index < source.size do
-    director = source[director_index]
-    result[director[:name]] = gross_for_director(director)
-    director_index += 1
-  end
-  result
-end
+hash = {} 
+
+i = 0 
+total = 0 
+
+while i < source.length do 
+  name = source[i]
+  total = gross_for_director(name)
+  hash[name[:name]] = total 
+  total = 0 
+  i += 1 
+end 
+hash
+end 
 
 def gross_for_director(d)
   total = 0
@@ -26,6 +32,13 @@ end
 
 def list_of_directors(source)
   # Write this implementation
+  array = []
+  i = 0 
+  while i < source.length do 
+    array.push(source[i][:name])
+    i += 1 
+  end 
+  array
 end
 
 def total_gross(source)
@@ -38,6 +51,19 @@ def total_gross(source)
   # Visit each key (i.e. director name), look up the value in the hash
   # returned by directors_totals, and add it to a running total. When done,
   # return the total
+  
+  
+  
+  
+  
+   i = 0 
+  total = 0 
+  names = list_of_directors(source)
+  earnings_hash = directors_totals(source)
+  while i < source.length do 
+      x = names[i]
+      total += earnings_hash[x]
+      i += 1 
+  end 
+total
 end
-
-
